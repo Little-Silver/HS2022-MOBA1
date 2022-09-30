@@ -2,13 +2,13 @@
 
 ## Technologien
 
-- Programmiersprache: Java / Kotlin
+- Programmiersprache: Kotlin
 - Betriebssystem: Android
 - Umgebung: Android Studio
 
 ## Inhalt
 
-### Regeln
+### Regeln (Standard-Variante)
 - https://de.wikipedia.org/wiki/M%C3%BChle_(Spiel)
 
 ### Features
