@@ -5,7 +5,12 @@ import com.example.ninemensmorris.Placeholder
 import com.example.ninemensmorris.State
 
 class Game {
+
     var board:Board = Board();
+    var state:GameState = GameState.PLACEMENT
+    var player1: Player = Player(State.BLACK)
+    var player2: Player = Player(State.WHITE)
+    var currentPlayer = player1;
 
     fun addStone(placeholder: Placeholder, state:State) {
         //TODO: Update board
@@ -57,5 +62,15 @@ class Game {
 
     private fun inSameLine(placeholder: Placeholder, field: Placeholder): Boolean {
         TODO("Not yet implemented")
+    }
+
+    private fun switchPlayer() {
+
+    }
+
+    fun isFinished(): Boolean {
+        //TODO: Check if movement is possible
+        //TODO: Check if number of player stones < 4
+        return true
     }
 }
