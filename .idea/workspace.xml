@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fa38144-6ebb-4060-9dec-fbc9e064e8fd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/NineMensMorris/app/src/main/java/com/example/ninemensmorris/Board.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NineMensMorris/app/src/main/java/com/example/ninemensmorris/Graph.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NineMensMorris/app/src/main/java/com/example/ninemensmorris/Placeholder.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/NineMensMorris" />
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
