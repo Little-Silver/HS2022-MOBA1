@@ -22,10 +22,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
-        binding.root.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        binding.button1.setOnClickListener { view ->
+            Snackbar.make(view, "Button 1 clicked", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+        binding.testButton1.setOnClickListener { view ->
+            Snackbar.make(view, "Test Button 1 clicked", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+        binding.testButton2.setOnClickListener { view ->
+            Snackbar.make(view, "Test Button 2 clicked", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
     }

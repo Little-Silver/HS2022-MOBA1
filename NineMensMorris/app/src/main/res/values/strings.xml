@@ -1,13 +1,33 @@
 <resources>
     <string name="app_name">NineMensMorris</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="button">Button</string>
+    <string name="button1" />
+    <string name="button2"></string>
+    <string name="button3"></string>
+    <string name="button4"></string>
+    <string name="button5"></string>
+    <string name="button6"></string>
+    <string name="button7"></string>
+    <string name="button8"></string>
+    <string name="button9"></string>
+    <string name="button10" />
+    <string name="button11" />
+    <string name="imageView" />
+    <string name="button12" />
+    <string name="button13" />
+    <string name="button14" />
+    <string name="button15" />
+    <string name="button16" />
+    <string name="button17" />
+    <string name="button18" />
+    <string name="button19" />
+    <string name="button20" />
+    <string name="button21" />
+    <string name="button22" />
+    <string name="button23" />
+    <string name="button24" />
+    <string name="button25" />
+    <string name="testButton1">Test Button 1</string>
+    <string name="testButton2">Test Button 2</string>
 </resources>
