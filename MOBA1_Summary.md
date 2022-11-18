@@ -242,7 +242,7 @@ when (api) {
 
 ```
 
-*Collections*
+__Collections__
 
 - [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/), [Set](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/), [Map](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/)
 - [MutableList](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/), [MutableSet](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/), [MutableMap](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/)
@@ -307,7 +307,7 @@ startActivity(intent)
 
 Intent without result
 
-```kotlin	
+```kotlin
 //add onClick listener for our button
 binding.urlButton.setOnClickListener {
     // Implicit Intent by specifying a URL
@@ -319,6 +319,7 @@ binding.urlButton.setOnClickListener {
     startActivity(i)
 }
 ```
+
 Intent with result
 
 ```kotlin
@@ -378,7 +379,6 @@ Add the following code to your activity_layout.xml
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 </com.google.android.material.appbar.AppBarLayout>
-
 ```
 
 ```kotlin
@@ -399,12 +399,13 @@ All resources are placed in the /res folder.
 />
 ```
 
-*Localizations*
+__Localizations__
 Language dependent strings can be moved to `values/strings.xml`.
 
 ```xml
 <string name="authenticate_button_text">Anmelden</string>
 ```
+
 Use these strings in your xml layout
 
 ```xml
@@ -414,6 +415,7 @@ Use these strings in your xml layout
 ### Constraint Layout
 
 Position one view relative to another
+
 ```xml
 <Button android:id="@+id/right_button" ...
     app:layout_constraintLeft_toRightOf="@+id/left_button" />
@@ -450,6 +452,7 @@ app:layout_constraintHorizontal_chainStyle="packed"
 ### ListView
 
 Android provides a list view
+
 - All elements usually have the same layout
 - a user can interact with the list elements
 - The connection between the data and the view is done using an adapter
@@ -475,15 +478,13 @@ user_list.adapter = adapter
 class Person(val name: String, val street : String) {}
 ```
 
-
 ```kotlin
-class PersonAdapter(var persons: MutableList<Person>,
-    val context : Context) : BaseAdapter() {
-        var layoutInflater : LayoutInflater
-        private var _binding: PersonCellBinding? = null
-        private val binding get() = _binding!!
-        private var bindings = mutableMapOf<View,PersonCellBinding>()
-        init {
+class PersonAdapter(var persons: MutableList<Person>, val context : Context) : BaseAdapter() {
+    var layoutInflater : LayoutInflater
+    private var _binding: PersonCellBinding? = null
+    private val binding get() = _binding!!
+    private var bindings = mutableMapOf<View,PersonCellBinding>()
+    init {
         layoutInflater = LayoutInflater.from(context)
     }
     override fun getCount(): Int { //number of elements to display
@@ -509,10 +510,9 @@ class PersonAdapter(var persons: MutableList<Person>,
         binding.street.text = person.street
         return view
     }
-
 }
-
 ```
+
 ### RecyclerView
 
 - The `RecyclerView` works in a similar way to ListView.
@@ -597,8 +597,7 @@ In order to retrieve data from a server, you need to have Internet permission. T
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="zhaw.ch.gsontest">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="zhaw.ch.gsontest">
     <uses-permission android:name="android.permission.INTERNET" />
     <application ...
 </manifest>
@@ -683,9 +682,9 @@ class Delegate {
     operator fun getValue(thisRef: Any?,
     property: KProperty<*>): String {
         return "${thisRef} ${property.name}"}
-    operator fun setValue(thisRef: Any?,
-    property: KProperty<*>, value: String) {
-        println("$value, assigned to '${property.name}' in $thisRef")}}
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+        println("$value, assigned to '${property.name}' in $thisRef")}
+}
 @Test
 fun delegateTest() {
     val e = Example()
@@ -698,8 +697,7 @@ fun delegateTest() {
 //the following definition
 val model: UserDataViewModel by viewModels()
 //will in fact call the method "viewModels":
-inline fun <reified VM : ViewModel> ComponentActivity.viewModels(
-    noinline factoryProducer: (() -> Factory)? = null): Lazy<VM> {
+inline fun <reified VM : ViewModel> ComponentActivity.viewModels(noinline factoryProducer: (() -> Factory)? = null): Lazy<VM> {
     //create a default factory if the parameter is null
     val factoryPromise = factoryProducer ?: {
         defaultViewModelProviderFactory
@@ -729,6 +727,7 @@ The subscription will automatically be removed when the component is destroyed. 
 Due to the lifecycle-aware feature, a recreated component will automatically receive the newest data.
 
 When using LiveData with a ListView adapter, observe is:
+
 - not called when the content of a collection changes
 - called when a new List is assigned to the model value
 
@@ -739,8 +738,8 @@ adapter = ArrayAdapter<Person>(..., mutableListOf<Person>())
 model.persons.observe(viewLifecycleOwner,
     //note that the observer sends the new value as parameter
     Observer<MutableList<Person>>{ newVal ->
-    adapter?.clear()
-    adapter?.addAll(newVal) //addAll will call notifyDatasetChanged
+        adapter?.clear()
+        adapter?.addAll(newVal) //addAll will call notifyDatasetChanged
 })
 ... //this changing will call the observer
 persons.value = mutableListOf<Person>()
@@ -845,8 +844,7 @@ interface PersonDao {
     @Query("SELECT * FROM person WHERE first_name IN (:names)")
     fun loadAllByFirstName(names: List<String>): List<Person>
     
-    @Query("SELECT * FROM person WHERE first_name LIKE :first AND " +
-    "last_name LIKE :last LIMIT 1")
+    @Query("SELECT * FROM person WHERE first_name LIKE :first AND " + "last_name LIKE :last LIMIT 1")
     fun findByName(first: String, last: String): Person
     
     @Insert
@@ -855,7 +853,6 @@ interface PersonDao {
     @Delete
     fun delete(person: Person)
 }
-
 ```
 
 ```kotlin
@@ -881,8 +878,7 @@ Add the following lines to `build.gradle`:
 
 ```gradle
 def lifecycle_version = "2.5.1"
-implementation 
-    "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 ```
 
 ```kotlin
@@ -908,7 +904,6 @@ lifecycleScope.launchWhenStarted {
 }
 //readData is now executed in a different thread and won't block
 //the main ui thread
-
 ```
 
 ## Android Services
@@ -917,12 +912,14 @@ lifecycleScope.launchWhenStarted {
 - New service versions are delivered by the Play Store. This ensures that the newest version is available.
 
 ### Setup
+
 Add the desired service to your `build.gradle`
+
 ```gradle
 implementation 'com.google.android.gms:play-services-vision:11.
 ```
 
-Check if the service is available: 
+Check if the service is available:
 
 ```kotlin
 val googleAPI = GoogleApiAvailability.getInstance()
@@ -980,25 +977,28 @@ __Android Activity Recognition__
 __Setup__
 
 Gradle:
+
 ```gradle
-    implementation 'com.google.android.gms:play-services-location:
+implementation 'com.google.android.gms:play-services-location:
 ```
 
 Add the needed permission
+
 ```
-= API 28:
+= API 28: 
 com.google.android.gms.permission.ACTIVITY_RECOGNITION
 > API 28:
 android.permission.ACTIVITY_RECOGNITION
 ```
+
 Check if the service is available
+
 ```kotlin
 val googleAPI = GoogleApiAvailability.getInstance()
 val isAvailable = googleAPI.isGooglePlayServicesAvailable(applicationContext)
 if (isAvailable != ConnectionResult.SUCCESS) {
     //show an error message if it is not available
 }
-
 ```
 
 ```kotlin
@@ -1052,7 +1052,24 @@ broadcastReceiver = MyBroadcastReceiver(logger)
 context.registerReceiver(broadcastReceiver, intentFilter)
 ```
 
-## Beacons
+## Beacons / App Publishing
+
+### App Publishing
+
+There are several ways to publish an app:
+
+- Release it for a predefined number of users, often called sideloading
+- Release it on a marketplace like Google Play
+
+__Sideloading__
+
+- Create a package file from your sources (Build -> APK)
+- Send the APK file per mail or put it on a web server
+- Inform the users that a new version is available
+
+__APP Store__
+
+__Instant App__
 
 ## Mobile Web
 
