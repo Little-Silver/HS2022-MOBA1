@@ -1,15 +1,11 @@
-package com.example.NineMensMorris
-
-import com.example.ninemensmorris.Board
-import com.example.ninemensmorris.Placeholder
-import com.example.ninemensmorris.State
+package com.example.ninemensmorris
 
 class Game {
 
     var board:Board = Board();
-    var state:GameState = GameState.PLACEMENT
-    var player1:Player = Player(State.BLACK)
-    var player2:Player = Player(State.WHITE)
+    var state: GameState = GameState.PLACEMENT
+    var player1: Player = Player(State.BLACK)
+    var player2: Player = Player(State.WHITE)
     var currentPlayer = player1;
 
     fun addStone(placeholder: Placeholder, state:State) {

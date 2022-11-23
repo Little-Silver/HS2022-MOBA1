@@ -1,7 +1,4 @@
-package com.example.NineMensMorris
-
-import com.example.ninemensmorris.Placeholder
-import com.example.ninemensmorris.State
+package com.example.ninemensmorris
 
 data class Player(val color: State) {
     val INITIAL_NUMBER_OF_STONES: Int = 9

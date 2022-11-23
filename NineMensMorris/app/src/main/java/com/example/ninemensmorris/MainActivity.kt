@@ -1,33 +1,39 @@
 package com.example.ninemensmorris
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import androidx.core.content.res.ResourcesCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ninemensmorris.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
+
 
 class MainActivity : AppCompatActivity() {
 
+    //, View.OnClickListener
     private lateinit var binding: ActivityMainBinding
+    private var game = Game()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button1.setOnClickListener { view ->
+        /*binding.piecesOfPlayer1.setOnClickListener{
+            if(game.currentPlayer == game.player1){
+
+            }
+        }*/
+
+        var text = game.currentPlayer.color.name
+
+        binding.placeholder000.setOnClickListener { view ->
             Snackbar.make(view, "Button 1 clicked", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
         binding.testButton1.setOnClickListener { view ->
-            Snackbar.make(view, "Test Button 1 clicked", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, text, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
         binding.testButton2.setOnClickListener { view ->
@@ -51,4 +57,8 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    /*override fun onClick(click: View?) {
+        TODO("Not yet implemented")
+    }*/
 }
