@@ -20,12 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*binding.piecesOfPlayer1.setOnClickListener{
-            if(game.currentPlayer == game.player1){
-
-            }
-        }*/
-
         var text = game.currentPlayer.color.name
 
         binding.placeholder000.setOnClickListener { view ->
