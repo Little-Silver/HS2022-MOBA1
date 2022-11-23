@@ -1,13 +1,16 @@
 package com.example.ninemensmorris
 
+import android.graphics.Color
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel: ViewModel() {
-    val userName = MutableLiveData<String>()
+    var game: MutableLiveData<Game> = MutableLiveData<Game>()
+    var dispPlayer: MutableLiveData<String> = MutableLiveData()
 
     fun switchPlayer(view: View) {
-        userName.value = "test"
+        game.value?.switchPlayer()
+        dispPlayer.value = game.value?.currentPlayer?.color?.name
     }
 }

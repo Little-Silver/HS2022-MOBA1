@@ -1,12 +1,24 @@
 package com.example.ninemensmorris
 
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+
 class Game {
 
     var board:Board = Board();
     var state: GameState = GameState.PLACEMENT
     var player1: Player = Player(State.BLACK)
     var player2: Player = Player(State.WHITE)
-    var currentPlayer = player1;
+
+    var currentPlayer = player1
+
+    constructor(board: Board){
+        this.board = board
+        this.state = GameState.PLACEMENT
+        this.player1 = Player(State.BLACK)
+        this.player2 = Player(State.WHITE)
+        this.currentPlayer = player1
+    }
 
     fun addStone(placeholder: Placeholder, state:State) {
         //TODO: Update board
@@ -77,7 +89,7 @@ class Game {
         return norm == 1
     }
 
-    private fun switchPlayer() {
+    public fun switchPlayer() {
         if (currentPlayer == player1) currentPlayer = player2
         else currentPlayer = player1
     }

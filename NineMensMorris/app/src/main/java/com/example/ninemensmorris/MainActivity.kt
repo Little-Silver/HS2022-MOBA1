@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     //, View.OnClickListener
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
-    private var game = Game()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        viewModel.game.value = Game(Board())
+        viewModel.dispPlayer.value = ""
 
     }
 
