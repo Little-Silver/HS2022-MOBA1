@@ -31,4 +31,5 @@
     <string name="testButton2">Test Button 2</string>
     <string name="numberOfPiecesPlayer1">9</string>
     <string name="numberOfPiecesPlayer2">9</string>
+    <string name="playerActivity">Player?</string>
 </resources>

@@ -56,7 +56,7 @@
             tools:layout_editor_absoluteY="40dp" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/placeholder000"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="30dp"
@@ -69,7 +69,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/placeholder001"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="30dp"
@@ -82,7 +82,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/placeholder002"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="30dp"
@@ -95,7 +95,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/placeholder012"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="30dp"
@@ -108,7 +108,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/placeholder022"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="30dp"
@@ -121,7 +121,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/placeholder021"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginBottom="30dp"
@@ -134,7 +134,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/placeholder020"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="30dp"
@@ -147,7 +147,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/placeholder010"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="30dp"
@@ -160,7 +160,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/placeholder101"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="85dp"
@@ -173,7 +173,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/placeholder102"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="85dp"
@@ -186,7 +186,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/placeholder112"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="85dp"
@@ -199,7 +199,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button12"
+            android:id="@+id/placeholder122"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="85dp"
@@ -212,7 +212,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button13"
+            android:id="@+id/placeholder121"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginBottom="85dp"
@@ -225,7 +225,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button14"
+            android:id="@+id/placeholder120"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="85dp"
@@ -238,7 +238,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button15"
+            android:id="@+id/placeholder110"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="85dp"
@@ -251,7 +251,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button16"
+            android:id="@+id/placeholder200"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="140dp"
@@ -264,7 +264,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button17"
+            android:id="@+id/placeholder201"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="140dp"
@@ -277,7 +277,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button18"
+            android:id="@+id/placeholder202"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="140dp"
@@ -290,7 +290,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button19"
+            android:id="@+id/placeholder212"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="140dp"
@@ -303,7 +303,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button20"
+            android:id="@+id/placeholder222"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="140dp"
@@ -316,7 +316,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button21"
+            android:id="@+id/placeholder100"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="85dp"
@@ -329,7 +329,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button22"
+            android:id="@+id/placeholder221"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginBottom="140dp"
@@ -342,7 +342,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button23"
+            android:id="@+id/placeholder220"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="140dp"
@@ -355,7 +355,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button24"
+            android:id="@+id/placeholder210"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="140dp"
@@ -409,4 +409,14 @@
         app:layout_constraintStart_toEndOf="@+id/piecesOfPlayer2"
         app:layout_constraintTop_toTopOf="@+id/piecesOfPlayer2"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewPlayerActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="48dp"
+        android:text="@string/playerActivity"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintStart_toEndOf="@+id/textViewPiecesOfPlayer2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
