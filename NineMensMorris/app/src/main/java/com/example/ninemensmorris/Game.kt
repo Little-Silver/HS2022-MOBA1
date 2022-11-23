@@ -8,8 +8,8 @@ class Game {
 
     var board:Board = Board();
     var state:GameState = GameState.PLACEMENT
-    var player1: Player = Player(State.BLACK)
-    var player2: Player = Player(State.WHITE)
+    var player1:Player = Player(State.BLACK)
+    var player2:Player = Player(State.WHITE)
     var currentPlayer = player1;
 
     fun addStone(placeholder: Placeholder, state:State) {
@@ -56,16 +56,34 @@ class Game {
         return completeLines
     }
 
-    private fun isLineComplete(placeholder: Placeholder, field: Placeholder): Boolean {
-        TODO("Not yet implemented")
+    private fun isLineComplete(corner: Placeholder, adjacentField: Placeholder): Boolean {
+        if (!inSameLine(corner, adjacentField)) return false
+
+        var lastVal = board.graph.adjacencyMap[adjacentField]?.filter { it.id != corner.id && it.isCorner }
+        if (lastVal == null || lastVal.size != 1) return false
+        return inSameLine(lastVal[0], adjacentField)
+
     }
 
     private fun inSameLine(placeholder: Placeholder, field: Placeholder): Boolean {
-        TODO("Not yet implemented")
+        var norm:Int = kotlin.math.min(
+            1,
+            kotlin.math.abs(placeholder.id[0].digitToInt() - field.id[0].digitToInt())
+        )
+        norm += kotlin.math.min(
+            1,
+            kotlin.math.abs(placeholder.id[1].digitToInt() - field.id[1].digitToInt())
+        )
+        norm += kotlin.math.min(
+            1,
+            kotlin.math.abs(placeholder.id[2].digitToInt() - field.id[2].digitToInt())
+        )
+        return norm == 1
     }
 
     private fun switchPlayer() {
-
+        if (currentPlayer == player1) currentPlayer = player2
+        else currentPlayer = player1
     }
 
     fun isFinished(): Boolean {
