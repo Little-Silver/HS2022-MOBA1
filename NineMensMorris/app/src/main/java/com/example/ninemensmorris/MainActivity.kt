@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.ninemensmorris.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -12,10 +14,18 @@ class MainActivity : AppCompatActivity() {
 
     //, View.OnClickListener
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainActivityViewModel
     private var game = Game()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

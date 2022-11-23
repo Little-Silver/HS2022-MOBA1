@@ -423,7 +423,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginBottom="48dp"
-        android:text=""
+        android:text="@{viewModel.userName}"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toEndOf="@+id/textViewPiecesOfPlayer2" />
 </androidx.constraintlayout.widget.ConstraintLayout></layout>
