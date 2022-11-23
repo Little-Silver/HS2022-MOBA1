@@ -6,7 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/piecesOfPlayer2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="50dp"
+        android:width="30dp"
+        android:height="30dp"
+        android:background="@drawable/round_button"
+        android:text="@string/button1"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/piecesOfPlayer1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="80dp"
+        android:width="30dp"
+        android:height="30dp"
+        android:background="@drawable/round_button"
+        android:text="@string/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="400dp"
         android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,10 +50,10 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/imageView"
             app:srcCompat="@drawable/ninemenmorris"
             tools:layout_editor_absoluteX="40dp"
-            tools:layout_editor_absoluteY="40dp"
-            android:contentDescription="@string/imageView" />
+            tools:layout_editor_absoluteY="40dp" />
 
         <Button
             android:id="@+id/button1"
@@ -35,7 +64,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button1"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -48,7 +76,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button2"
             app:layout_constraintEnd_toEndOf="@id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -63,7 +90,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button3"
             app:layout_constraintEnd_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -76,7 +102,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button4"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -91,7 +116,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button5"
             app:layout_constraintBottom_toBottomOf="@id/imageView"
             app:layout_constraintEnd_toEndOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -104,7 +128,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button6"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -119,7 +142,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button7"
             app:layout_constraintBottom_toBottomOf="@id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -132,7 +154,6 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button8"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -142,12 +163,11 @@
             android:id="@+id/button9"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="85dp"
             android:layout_marginTop="85dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button9"
+            app:layout_constraintEnd_toEndOf="@id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -157,12 +177,11 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="85dp"
+            android:layout_marginEnd="85dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button10"
             app:layout_constraintEnd_toEndOf="@id/imageView"
-            app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -170,13 +189,12 @@
             android:id="@+id/button11"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="85dp"
             android:layout_marginEnd="85dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button11"
-            app:layout_constraintEnd_toEndOf="@id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -185,40 +203,37 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="85dp"
+            android:layout_marginBottom="85dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button12"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@id/imageView"
+            app:layout_constraintEnd_toEndOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/button13"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="85dp"
             android:layout_marginBottom="85dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button13"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@id/imageView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/button14"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginStart="85dp"
             android:layout_marginBottom="85dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button14"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -227,25 +242,23 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="85dp"
-            android:layout_marginBottom="85dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button15"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
+            app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/button16"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="85dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="140dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button16"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -254,12 +267,11 @@
             android:id="@+id/button17"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="140dp"
             android:layout_marginTop="140dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button17"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -269,12 +281,11 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="140dp"
+            android:layout_marginEnd="140dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button18"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@id/imageView"
+            app:layout_constraintEnd_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -282,14 +293,13 @@
             android:id="@+id/button19"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="140dp"
             android:layout_marginEnd="140dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button19"
-            app:layout_constraintEnd_toEndOf="@id/imageView"
-            app:layout_constraintTop_toTopOf="@id/imageView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
@@ -297,31 +307,16 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="140dp"
-            android:width="30dp"
-            android:height="30dp"
-            android:background="@drawable/round_button"
-            android:text="@string/button20"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <Button
-            android:id="@+id/button21"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="140dp"
             android:layout_marginBottom="140dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button21"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button22"
+            android:id="@+id/button21"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="85dp"
@@ -329,22 +324,33 @@
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button22"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button23"
+            android:id="@+id/button22"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginBottom="140dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button23"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@id/imageView"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/button23"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="140dp"
+            android:width="30dp"
+            android:height="30dp"
+            android:background="@drawable/round_button"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@id/imageView"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -353,24 +359,9 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="140dp"
-            android:layout_marginBottom="140dp"
             android:width="30dp"
             android:height="30dp"
             android:background="@drawable/round_button"
-            android:text="@string/button24"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@id/imageView"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <Button
-            android:id="@+id/button25"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="140dp"
-            android:width="30dp"
-            android:height="30dp"
-            android:background="@drawable/round_button"
-            android:text="@string/button25"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="@id/imageView"
@@ -396,4 +387,26 @@
         android:text="@string/testButton2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/testButton1" />
+
+    <TextView
+        android:id="@+id/textViewPiecesOfPlayer1"
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:text="@string/numberOfPiecesPlayer1"
+        app:layout_constraintBottom_toBottomOf="@+id/piecesOfPlayer1"
+        app:layout_constraintEnd_toStartOf="@+id/piecesOfPlayer1"
+        app:layout_constraintTop_toTopOf="@+id/piecesOfPlayer1" />
+
+    <TextView
+        android:id="@+id/textViewPiecesOfPlayer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="@string/numberOfPiecesPlayer2"
+        app:layout_constraintBottom_toBottomOf="@+id/piecesOfPlayer2"
+        app:layout_constraintStart_toEndOf="@+id/piecesOfPlayer2"
+        app:layout_constraintTop_toTopOf="@+id/piecesOfPlayer2"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
