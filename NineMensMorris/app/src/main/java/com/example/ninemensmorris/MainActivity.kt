@@ -26,24 +26,6 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        var text = game.currentPlayer.color.name
-
-        binding.placeholder000.setOnClickListener { view ->
-            Snackbar.make(view, "Button 1 clicked", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-        binding.testButton1.setOnClickListener { view ->
-            Snackbar.make(view, text, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-        binding.testButton2.setOnClickListener { view ->
-            Snackbar.make(view, "Test Button 2 clicked", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
