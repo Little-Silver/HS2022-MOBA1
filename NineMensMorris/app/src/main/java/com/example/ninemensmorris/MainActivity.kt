@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import com.example.ninemensmorris.databinding.ActivityMainBinding
@@ -23,18 +24,45 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var clickedPiecesOfPlayer1 = false
+        var clickedPiecesOfPlayer2 = false
+        var clickedPlaceholder000 = false
+        var clickedPlaceholder001 = false
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
 
         game.value = Game(Board())
-        binding.testButton1.setOnClickListener { view ->
+        binding.testButton1.setOnClickListener {
             switchPlayer();
-            binding.textViewPlayerActive.setText(dispPlayer.value.toString())
+            binding.textViewPlayerActive.text = dispPlayer.value.toString()
             switchColorPurple(binding.placeholder000)
         }
-        binding.testButton2.setOnClickListener { view ->
+        binding.testButton2.setOnClickListener {
             switchColorBlack(binding.placeholder000)
         }
+        binding.piecesOfPlayer1.setOnClickListener {
+            clickedPiecesOfPlayer1 = true
+        }
+        binding.piecesOfPlayer2.setOnClickListener {
+            clickedPiecesOfPlayer2 = true
+        }
+        binding.placeholder000.setOnClickListener {
+            clickedPlaceholder000
+            if(clickedPiecesOfPlayer1){
+                switchColorWhite(binding.placeholder000)
+                clickedPiecesOfPlayer1 = false
+            }
+        }
+        binding.placeholder001.setOnClickListener {
+            clickedPlaceholder001 = true
+            if(clickedPiecesOfPlayer2){
+                switchColorWhite(binding.placeholder001)
+                clickedPiecesOfPlayer2 = false
+            }
+        }
+        //change text for player 1
+        binding.textViewPiecesOfPlayer1.text = game.value!!.player1.stonesToPlace.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,24 +81,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun switchPlayer() {
+    private fun switchPlayer() {
         game.value?.switchPlayer()
         dispPlayer.value = game.value?.currentPlayer?.color?.name
     }
 
-    fun switchColorBlack(button: Button){
+    private fun switchColorBlack(button: Button){
         ViewCompat.setBackgroundTintList(button, ContextCompat.getColorStateList(this, R.color.black))
     }
 
-    fun switchColorWhite(button: Button){
+    private fun switchColorWhite(button: Button){
         ViewCompat.setBackgroundTintList(button, ContextCompat.getColorStateList(this, R.color.white))
     }
 
-    fun switchColorPurple(button: Button){
+    private fun switchColorPurple(button: Button){
         ViewCompat.setBackgroundTintList(button, ContextCompat.getColorStateList(this, R.color.purple_500))
     }
-
-    /*override fun onClick(click: View?) {
-        TODO("Not yet implemented")
-    }*/
 }
