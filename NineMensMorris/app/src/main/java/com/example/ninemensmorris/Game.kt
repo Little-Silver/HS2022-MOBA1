@@ -9,6 +9,7 @@ class Game {
     var state: GameState = GameState.PLACEMENT
     var player1: Player = Player(State.BLACK)
     var player2: Player = Player(State.WHITE)
+    var steal: Int = 0
 
     var currentPlayer = player1
 
@@ -20,20 +21,114 @@ class Game {
         this.currentPlayer = player1
     }
 
-    fun addStone(placeholder: Placeholder, state:State) {
-        //TODO: Update board
-        placeholder.state = state
+    fun move(placeholderList: MutableList<Placeholder>) {
+
+        if (steal > 0) {
+            try{
+                removeStone(placeholderList[0])
+                steal -= 1
+                if (steal == 0) switchPlayer()
+            } catch (e: Exception) {
+
+            } finally {
+                placeholderList.removeAt(0)
+            }
+
+        } else {
+            when (currentPlayer.playerState) {
+                PlayerState.PLACEMENT -> {
+                    try{
+                        steal += addStone(placeholderList[0])
+                        if (steal == 0) switchPlayer()
+                    } catch (e: Exception) {
+
+                    } finally {
+                        placeholderList.removeAt(0)
+                    }
+                }
+
+                PlayerState.JUMPING -> {
+                    if (placeholderList.size == 2) {
+                        try {
+                            steal += moveStone(placeholderList[0], placeholderList[1], true)
+                            if (steal == 0) switchPlayer()
+                        } catch (e: Exception) {
+
+                        } finally {
+                            placeholderList.removeAt(1)
+                            placeholderList.removeAt(0)
+                        }
+                    }
+                }
+
+                PlayerState.MOVING -> {
+                    if (placeholderList.size == 2) {
+                        try {
+                            steal += moveStone(placeholderList[0], placeholderList[1], false)
+                            if (steal == 0) switchPlayer()
+                        } catch (e: Exception) {
+
+                        } finally {
+                            placeholderList.removeAt(1)
+                            placeholderList.removeAt(0)
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    @Throws
+    fun addStone(placeholder: Placeholder) :Int {
+        //TODO: validate placement
+        if (placeholder.state != State.EMPTY) {
+            throw java.lang.Exception("Invalid Move")
+        }
+        placeholder.state = currentPlayer.color
         val completedLines = countCompletedLines(placeholder)
         //TODO: select <completedLines> number of stones to be removed
+        currentPlayer.stonesToPlace -= 1
+        if (currentPlayer.stonesToPlace == 0) {
+            currentPlayer.playerState = PlayerState.MOVING
+        }
+        return completedLines //number of completed lines
     }
 
+    @Throws
     fun removeStone(placeholder: Placeholder) {
+
+        if(placeholder.state == currentPlayer.color || placeholder.state == State.EMPTY) {
+            throw java.lang.Exception("Invalid Move")
+        }
         placeholder.state = State.EMPTY
-        //TODO removeStone
+        var otherPlayer = player1
+        if (currentPlayer == player1) otherPlayer = player2
+        otherPlayer.stonesOnBoard -= 1
+
+        if (otherPlayer.playerState == PlayerState.MOVING && otherPlayer.stonesOnBoard == 3){
+            otherPlayer.playerState = PlayerState.JUMPING
+        }
     }
 
-    fun moveStone(from: Placeholder, to:Placeholder) {
-        //TODO: validate
+    @Throws
+    fun moveStone(from: Placeholder, to:Placeholder, jump:Boolean): Int {
+        if (to.state != State.EMPTY) {
+            throw java.lang.Exception("Invalid Move")
+        }
+
+        if (from.state != currentPlayer.color) {
+            throw java.lang.Exception("Invalid Move")
+        }
+
+        if (board.graph.adjacencyMap[from]?.contains(to) != true){
+            throw java.lang.Exception("Invalid Move")
+        }
+
+        from.state = State.EMPTY
+        to.state = currentPlayer.color
+        val completedLines = countCompletedLines(to)
+        return completedLines
     }
 
     private fun countCompletedLines(placeholder: Placeholder): Int {
@@ -96,7 +191,10 @@ class Game {
 
     fun isFinished(): Boolean {
         //TODO: Check if movement is possible
-        //TODO: Check if number of player stones < 4
-        return true
+        if (player1.stonesOnBoard < 3 || player2.stonesOnBoard < 3) {
+            return true
+        }
+        //TODO: Check if number of player stones < 3
+        return false
     }
 }

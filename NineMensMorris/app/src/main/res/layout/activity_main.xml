@@ -13,33 +13,116 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/piecesOfPlayer2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginBottom="50dp"
-        android:width="30dp"
-        android:height="30dp"
-        android:background="@drawable/round_button"
-        android:text="@string/button1"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="300dp"
+        android:layout_marginHorizontal="20dp"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/piecesOfPlayer1"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="80dp"
-        android:width="30dp"
-        android:height="30dp"
-        android:background="@drawable/round_button"
-        android:text="@string/button1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/aktiver_spieler"
+                android:minWidth="150dp" />
+
+            <TextView
+                android:id="@+id/textViewPlayerActive"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.dispPlayer}"
+                android:minWidth="150dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/zustand"
+                android:minWidth="150dp" />
+
+            <TextView
+                android:id="@+id/textViewPlayerActive1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.dispState}"
+                android:minWidth="150dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/player1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Spieler 1: (BLACK)"
+                android:minWidth="150dp" />
+
+            <TextView
+                android:id="@+id/player1PiecesToPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.p1Pieces}"
+                android:minWidth="50dp"/>
+
+            <TextView
+                android:id="@+id/player1state"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.p1State}"
+                android:minWidth="50dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/player2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Spieler 2 (WHITE):"
+                android:minWidth="150dp" />
+
+            <TextView
+                android:id="@+id/player2PiecesToPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.p2Pieces}"
+                android:minWidth="50dp"/>
+
+            <TextView
+                android:id="@+id/player2state"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.p2State}"
+                android:minWidth="50dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -51,7 +134,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5">
-
 
         <ImageView
             android:id="@+id/imageView"
@@ -396,35 +478,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/testButton1" />
 
-    <TextView
-        android:id="@+id/textViewPiecesOfPlayer1"
-        android:layout_width="22dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="30dp"
-        android:ems="10"
-        android:text="@string/numberOfPiecesPlayer1"
-        app:layout_constraintBottom_toBottomOf="@+id/piecesOfPlayer1"
-        app:layout_constraintEnd_toStartOf="@+id/piecesOfPlayer1"
-        app:layout_constraintTop_toTopOf="@+id/piecesOfPlayer1" />
-
-    <TextView
-        android:id="@+id/textViewPiecesOfPlayer2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="@string/numberOfPiecesPlayer2"
-        app:layout_constraintBottom_toBottomOf="@+id/piecesOfPlayer2"
-        app:layout_constraintStart_toEndOf="@+id/piecesOfPlayer2"
-        app:layout_constraintTop_toTopOf="@+id/piecesOfPlayer2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textViewPlayerActive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="48dp"
-        android:text="@{viewModel.dispPlayer}"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintStart_toEndOf="@+id/textViewPiecesOfPlayer2" />
 </androidx.constraintlayout.widget.ConstraintLayout></layout>

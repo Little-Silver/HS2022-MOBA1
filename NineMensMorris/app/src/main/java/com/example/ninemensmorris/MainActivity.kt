@@ -1,20 +1,25 @@
 package com.example.ninemensmorris
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.ninemensmorris.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 
 
 class MainActivity : AppCompatActivity() {
 
-    //, View.OnClickListener
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
+    private var clickList : MutableList<Placeholder> = mutableListOf()
+    private val mutableDict : MutableMap<Placeholder, Button> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +33,71 @@ class MainActivity : AppCompatActivity() {
         viewModel.game.value = Game(Board())
         viewModel.dispPlayer.value = ""
 
+        mutableDict.put(viewModel.game.value!!.board.p000, binding.placeholder000)
+        mutableDict.put(viewModel.game.value!!.board.p001, binding.placeholder001)
+        mutableDict.put(viewModel.game.value!!.board.p002, binding.placeholder002)
+        mutableDict.put(viewModel.game.value!!.board.p010, binding.placeholder010)
+        mutableDict.put(viewModel.game.value!!.board.p020, binding.placeholder020)
+        mutableDict.put(viewModel.game.value!!.board.p100, binding.placeholder100)
+        mutableDict.put(viewModel.game.value!!.board.p012, binding.placeholder012)
+        mutableDict.put(viewModel.game.value!!.board.p021, binding.placeholder021)
+        mutableDict.put(viewModel.game.value!!.board.p022, binding.placeholder022)
+
+        mutableDict.put(viewModel.game.value!!.board.p101, binding.placeholder101)
+        mutableDict.put(viewModel.game.value!!.board.p102, binding.placeholder102)
+        mutableDict.put(viewModel.game.value!!.board.p110, binding.placeholder110)
+        mutableDict.put(viewModel.game.value!!.board.p112, binding.placeholder112)
+        mutableDict.put(viewModel.game.value!!.board.p120, binding.placeholder120)
+        mutableDict.put(viewModel.game.value!!.board.p121, binding.placeholder121)
+        mutableDict.put(viewModel.game.value!!.board.p122, binding.placeholder122)
+
+        mutableDict.put(viewModel.game.value!!.board.p200, binding.placeholder200)
+        mutableDict.put(viewModel.game.value!!.board.p201, binding.placeholder201)
+        mutableDict.put(viewModel.game.value!!.board.p202, binding.placeholder202)
+        mutableDict.put(viewModel.game.value!!.board.p210, binding.placeholder210)
+        mutableDict.put(viewModel.game.value!!.board.p212, binding.placeholder212)
+        mutableDict.put(viewModel.game.value!!.board.p221, binding.placeholder221)
+        mutableDict.put(viewModel.game.value!!.board.p222, binding.placeholder222)
+        mutableDict.put(viewModel.game.value!!.board.p220, binding.placeholder220)
+
+        for (mutableEntry in mutableDict) {
+            mutableEntry.value.setOnClickListener(View.OnClickListener {
+                clickList.add(mutableEntry.key)
+                viewModel.game.value!!.move(clickList)
+                refresh()
+            })
+        }
+
+    }
+
+    private fun switchColorBlack(button: Button){
+        ViewCompat.setBackgroundTintList(button, ContextCompat.getColorStateList(this, R.color.black))
+    }
+
+    private fun switchColorWhite(button: Button){
+        ViewCompat.setBackgroundTintList(button, ContextCompat.getColorStateList(this, R.color.white))
+    }
+
+    private fun switchColorPurple(button: Button){
+        ViewCompat.setBackgroundTintList(button, ContextCompat.getColorStateList(this, R.color.purple_500))
+    }
+
+    private fun refresh() {
+        for (mutableEntry in mutableDict) {
+            if (mutableEntry.key.state == State.WHITE) {
+                switchColorWhite(mutableEntry.value)
+            } else if (mutableEntry.key.state == State.BLACK) {
+                switchColorBlack(mutableEntry.value)
+            } else {
+                switchColorPurple(mutableEntry.value)
+            }
+        }
+        viewModel.dispPlayer.value = viewModel.game.value!!.currentPlayer.color.toString()
+        viewModel.dispState.value = viewModel.game.value!!.state.toString()
+        viewModel.p1Pieces.value = viewModel.game.value!!.player1.stonesToPlace.toString()
+        viewModel.p2Pieces.value = viewModel.game.value!!.player2.stonesToPlace.toString()
+        viewModel.p1State.value = viewModel.game.value!!.player1.playerState.toString()
+        viewModel.p2State.value = viewModel.game.value!!.player2.playerState.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
