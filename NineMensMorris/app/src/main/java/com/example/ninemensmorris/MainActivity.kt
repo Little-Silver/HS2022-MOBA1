@@ -98,6 +98,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.p2Pieces.value = viewModel.game.value!!.player2.stonesToPlace.toString()
         viewModel.p1State.value = viewModel.game.value!!.player1.playerState.toString()
         viewModel.p2State.value = viewModel.game.value!!.player2.playerState.toString()
+        viewModel.winner.value = viewModel.game.value!!.winner.toString()
+        viewModel.error.value = viewModel.game.value!!.error
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

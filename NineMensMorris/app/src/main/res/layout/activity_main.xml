@@ -478,4 +478,60 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/testButton1" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="550dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout"
+        android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+
+        <TextView
+            android:id="@+id/winnerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Gewinner: "
+            android:minWidth="150dp" />
+
+        <TextView
+            android:id="@+id/winnerContent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@{viewModel.winner}"
+            android:minWidth="150dp" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/errorLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Error: "
+                android:minWidth="150dp" />
+
+            <TextView
+                android:id="@+id/errorContent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.error}"
+                android:minWidth="150dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout></layout>

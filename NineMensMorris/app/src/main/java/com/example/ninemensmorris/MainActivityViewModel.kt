@@ -13,6 +13,8 @@ class MainActivityViewModel: ViewModel() {
     var p2Pieces: MutableLiveData<String> = MutableLiveData()
     var p1State: MutableLiveData<String> = MutableLiveData()
     var p2State: MutableLiveData<String> = MutableLiveData()
+    var winner: MutableLiveData<String> = MutableLiveData()
+    var error: MutableLiveData<String> = MutableLiveData()
 
     fun switchPlayer(view: View) {
         game.value?.switchPlayer()

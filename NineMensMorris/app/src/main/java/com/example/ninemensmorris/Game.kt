@@ -2,6 +2,7 @@ package com.example.ninemensmorris
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import java.util.HashSet
 
 class Game {
 
@@ -10,6 +11,8 @@ class Game {
     var player1: Player = Player(State.BLACK)
     var player2: Player = Player(State.WHITE)
     var steal: Int = 0
+    var winner: State = State.EMPTY
+    var error: String = ""
 
     var currentPlayer = player1
 
@@ -27,9 +30,10 @@ class Game {
             try{
                 removeStone(placeholderList[0])
                 steal -= 1
+                if (isFinished()) {winner = currentPlayer.color}
                 if (steal == 0) switchPlayer()
             } catch (e: Exception) {
-
+                error = e.message.toString()
             } finally {
                 placeholderList.removeAt(0)
             }
@@ -39,9 +43,10 @@ class Game {
                 PlayerState.PLACEMENT -> {
                     try{
                         steal += addStone(placeholderList[0])
+                        if (isFinished()) {winner = currentPlayer.color}
                         if (steal == 0) switchPlayer()
                     } catch (e: Exception) {
-
+                        error = e.message.toString()
                     } finally {
                         placeholderList.removeAt(0)
                     }
@@ -51,9 +56,10 @@ class Game {
                     if (placeholderList.size == 2) {
                         try {
                             steal += moveStone(placeholderList[0], placeholderList[1], true)
+                            if (isFinished()) {winner = currentPlayer.color}
                             if (steal == 0) switchPlayer()
                         } catch (e: Exception) {
-
+                            error = e.message.toString()
                         } finally {
                             placeholderList.removeAt(1)
                             placeholderList.removeAt(0)
@@ -65,9 +71,10 @@ class Game {
                     if (placeholderList.size == 2) {
                         try {
                             steal += moveStone(placeholderList[0], placeholderList[1], false)
+                            if (isFinished()) {winner = currentPlayer.color}
                             if (steal == 0) switchPlayer()
                         } catch (e: Exception) {
-
+                            error = e.message.toString()
                         } finally {
                             placeholderList.removeAt(1)
                             placeholderList.removeAt(0)
@@ -86,8 +93,9 @@ class Game {
             throw java.lang.Exception("Invalid Move")
         }
         placeholder.state = currentPlayer.color
+        currentPlayer.placedStones.add(placeholder)
         val completedLines = countCompletedLines(placeholder)
-        //TODO: select <completedLines> number of stones to be removed
+
         currentPlayer.stonesToPlace -= 1
         if (currentPlayer.stonesToPlace == 0) {
             currentPlayer.playerState = PlayerState.MOVING
@@ -102,9 +110,9 @@ class Game {
             throw java.lang.Exception("Invalid Move")
         }
         placeholder.state = State.EMPTY
-        var otherPlayer = player1
-        if (currentPlayer == player1) otherPlayer = player2
+        var otherPlayer = getOtherPlayer()
         otherPlayer.stonesOnBoard -= 1
+        otherPlayer.placedStones.remove(placeholder)
 
         if (otherPlayer.playerState == PlayerState.MOVING && otherPlayer.stonesOnBoard == 3){
             otherPlayer.playerState = PlayerState.JUMPING
@@ -124,6 +132,9 @@ class Game {
         if (board.graph.adjacencyMap[from]?.contains(to) != true){
             throw java.lang.Exception("Invalid Move")
         }
+
+        currentPlayer.placedStones.remove(from)
+        currentPlayer.placedStones.remove(to)
 
         from.state = State.EMPTY
         to.state = currentPlayer.color
@@ -163,7 +174,7 @@ class Game {
         if (!inSameLine(corner, adjacentField)) return false
 
         var lastVal = board.graph.adjacencyMap[adjacentField]?.filter { it.id != corner.id && it.isCorner }
-        if (lastVal == null || lastVal.size != 1) return false
+        if (lastVal == null || lastVal.size != 1 || lastVal[0].state != corner.state) return false
         return inSameLine(lastVal[0], adjacentField)
 
     }
@@ -184,17 +195,34 @@ class Game {
         return norm == 1
     }
 
-    public fun switchPlayer() {
+    fun switchPlayer() {
         if (currentPlayer == player1) currentPlayer = player2
         else currentPlayer = player1
     }
 
     fun isFinished(): Boolean {
-        //TODO: Check if movement is possible
-        if (player1.stonesOnBoard < 3 || player2.stonesOnBoard < 3) {
+        if (player1.stonesOnBoard + player1.stonesToPlace < 3 || player2.stonesOnBoard + player2.stonesToPlace < 3) {
             return true
         }
-        //TODO: Check if number of player stones < 3
-        return false
+        val otherPlayer = getOtherPlayer()
+        if (otherPlayer.playerState != PlayerState.PLACEMENT)
+        {
+            for (placedStone in getOtherPlayer().placedStones) {
+                val adjacent = board.graph.adjacencyMap[placedStone]?.filter { placeholder -> placeholder.state == State.EMPTY }
+                if (adjacent != null && adjacent.isNotEmpty()) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false
+        }
+
+    }
+
+    fun getOtherPlayer(): Player {
+        var otherPlayer = player1
+        if (currentPlayer == player1) otherPlayer = player2
+        return otherPlayer
     }
 }

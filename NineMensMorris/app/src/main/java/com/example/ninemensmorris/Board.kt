@@ -36,7 +36,7 @@ class Board {
 
     constructor() {
 
-        graph.addEdgeBidirectional(p001, setOf(p000, p010, p101))
+        graph.addEdgeBidirectional(p001, setOf(p000, p101, p002))
         graph.addEdgeBidirectional(p010, setOf(p000, p020, p110))
         graph.addEdgeBidirectional(p012, setOf(p002, p022, p112))
         graph.addEdgeBidirectional(p021, setOf(p020, p022, p121))
