@@ -74,7 +74,7 @@ class Game {
     @Throws
     fun addStone(placeholder: Placeholder) {
         if (placeholder.state != State.EMPTY) {
-            throw java.lang.Exception("Invalid Move")
+            throw java.lang.Exception("Invalid Move <AddStone>: Field is not empty")
         }
 
         currentPlayer.stonesToPlace -= 1
@@ -95,12 +95,16 @@ class Game {
     @Throws
     fun removeStone(placeholder: Placeholder) {
 
-        if (placeholder.state == currentPlayer.color || placeholder.state == State.EMPTY) {
-            throw java.lang.Exception("Invalid Move")
+        if (placeholder.state == currentPlayer.color) {
+            throw java.lang.Exception("Invalid Move <removeStone>: Can't remove your own stones")
+        }
+
+        if (placeholder.state == State.EMPTY) {
+            throw java.lang.Exception("Invalid Move <removeStone>: No stone to remove")
         }
 
         if (countCompletedLines(placeholder) > 0) {
-            throw java.lang.Exception("Invalid Move")
+            throw java.lang.Exception("Invalid Move <removeStone>: Can't remove stones in completed line")
         }
 
         val otherPlayer = getOtherPlayer()
@@ -114,9 +118,12 @@ class Game {
 
     @Throws
     fun moveStone(from: Placeholder, to: Placeholder, jump: Boolean) {
-        if (to.state != State.EMPTY) throw java.lang.Exception("Invalid Move")
-        if (from.state != currentPlayer.color) throw java.lang.Exception("Invalid Move")
-        if (board.graph.adjacencyMap[from]?.contains(to) != true && !jump) throw java.lang.Exception("Invalid Move")
+        if (to.state != State.EMPTY)
+            throw java.lang.Exception("Invalid Move <MoveStone>: Destination field already in use")
+        if (from.state != currentPlayer.color)
+            throw java.lang.Exception("Invalid Move <MoveStone>: Only own stones can be moved")
+        if (board.graph.adjacencyMap[from]?.contains(to) != true && !jump)
+            throw java.lang.Exception("Invalid Move <MoveStones>: Jumping is not allowed")
 
         removeStoneFromBoard(from, currentPlayer)
         addStoneToBoard(to, currentPlayer)
