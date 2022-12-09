@@ -457,27 +457,6 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/testButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/testButton1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="@{viewModel::switchPlayer}"/>
-
-    <Button
-        android:id="@+id/testButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/testButton2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/testButton1" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
