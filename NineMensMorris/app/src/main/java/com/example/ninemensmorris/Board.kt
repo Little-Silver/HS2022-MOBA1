@@ -1,5 +1,7 @@
 package com.example.ninemensmorris
 
+import java.util.HashSet
+
 /**
  *
  */
@@ -50,6 +52,75 @@ class Board {
         graph.addEdgeBidirectional(p210, setOf(p200, p220, p110))
         graph.addEdgeBidirectional(p221, setOf(p222, p220, p121))
         graph.addEdgeBidirectional(p212, setOf(p222, p202, p112))
+    }
+
+    fun countCompletedLines(placeholder: Placeholder): Int {
+        var completeLines: Int = 0
+
+        for (line in getLines(placeholder)) {
+            if (isLineComplete(line)) completeLines++
+        }
+
+        return completeLines
+    }
+
+    fun isLineComplete(line: Set<Placeholder>): Boolean {
+        return line.stream().map { it::state.get() }.distinct().limit(2).count() <= 1
+    }
+
+    fun getLines(placeholder: Placeholder): Set<Set<Placeholder>> {
+        var adjacentFields = getAdjacentFields(placeholder)
+        var lines: MutableSet<MutableSet<Placeholder>> = mutableSetOf()
+
+        if (placeholder.isCorner) {
+            for (p1 in adjacentFields!!) {
+                var line: MutableSet<Placeholder> = mutableSetOf(p1)
+                line.add(p1)
+                line.add(placeholder)
+                var p2: List<Placeholder>? = getAdjacentFields(p1)?.filter { inSameLine(it, placeholder) }
+                if (p2 != null) {
+                    line.add(p2[0])
+                }
+                lines.add(line)
+            }
+        } else {
+            for (p1 in adjacentFields!!) {
+                var line: MutableSet<Placeholder> = mutableSetOf(placeholder)
+                line.add(placeholder)
+                line.add(p1)
+                for (p2 in adjacentFields) {
+                    if (inSameLine(p1, p2)) {
+                        line.add(p2)
+                    }
+                }
+                lines.add(line)
+            }
+        }
+        return lines
+    }
+
+    fun getAdjacentStonesWithSameColor(placeholder: Placeholder): List<Placeholder>? {
+        return graph.adjacencyMap[placeholder]?.filter { it.state == placeholder.state }
+    }
+
+    fun getAdjacentFields(placeholder: Placeholder): HashSet<Placeholder>? {
+        return graph.adjacencyMap[placeholder]
+    }
+
+    private fun inSameLine(placeholder: Placeholder, field: Placeholder): Boolean {
+        var norm: Int = kotlin.math.min(
+            1,
+            kotlin.math.abs(placeholder.id[0].digitToInt() - field.id[0].digitToInt())
+        )
+        norm += kotlin.math.min(
+            1,
+            kotlin.math.abs(placeholder.id[1].digitToInt() - field.id[1].digitToInt())
+        )
+        norm += kotlin.math.min(
+            1,
+            kotlin.math.abs(placeholder.id[2].digitToInt() - field.id[2].digitToInt())
+        )
+        return norm == 1
     }
 
 }

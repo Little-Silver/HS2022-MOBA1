@@ -80,7 +80,7 @@ class Game {
         currentPlayer.stonesToPlace -= 1
         addStoneToBoard(placeholder, currentPlayer)
 
-        steal += countCompletedLines(placeholder)
+        steal += board.countCompletedLines(placeholder)
 
         if (currentPlayer.stonesToPlace == 0) {
             currentPlayer.playerState = PlayerState.MOVING
@@ -103,7 +103,7 @@ class Game {
             throw java.lang.Exception("Invalid Move <removeStone>: No stone to remove")
         }
 
-        if (countCompletedLines(placeholder) > 0) {
+        if (board.countCompletedLines(placeholder) > 0) {
             throw java.lang.Exception("Invalid Move <removeStone>: Can't remove stones in completed line")
         }
 
@@ -128,7 +128,7 @@ class Game {
         removeStoneFromBoard(from, currentPlayer)
         addStoneToBoard(to, currentPlayer)
 
-        steal += countCompletedLines(to)
+        steal += board.countCompletedLines(to)
 
         if (isFinished()) winner = currentPlayer.color
         if (steal == 0) switchPlayer()
@@ -146,60 +146,9 @@ class Game {
         stone.state = State.EMPTY
     }
 
-    private fun countCompletedLines(placeholder: Placeholder): Int {
-        val adjacentFieldsWithSameStone =
-            board.graph.adjacencyMap[placeholder]?.filter { it.state == placeholder.state }
 
-        var completeLines: Int = 0
 
-        if (adjacentFieldsWithSameStone == null || adjacentFieldsWithSameStone.isEmpty()) {
-            return completeLines
-        }
 
-        if (placeholder.isCorner) {
-            for (field in adjacentFieldsWithSameStone) {
-                if (isLineComplete(placeholder, field)) {
-                    completeLines++
-                }
-            }
-        } else if (adjacentFieldsWithSameStone.size == 3) {
-            completeLines += 1
-        } else if (adjacentFieldsWithSameStone.size == 4) {
-            completeLines += 2
-        } else if (adjacentFieldsWithSameStone.size == 2) {
-            if (inSameLine(adjacentFieldsWithSameStone[0], adjacentFieldsWithSameStone[1])) {
-                completeLines += 1
-            }
-        }
-
-        return completeLines
-    }
-
-    private fun isLineComplete(corner: Placeholder, adjacentField: Placeholder): Boolean {
-        if (!inSameLine(corner, adjacentField)) return false
-
-        var lastVal =
-            board.graph.adjacencyMap[adjacentField]?.filter { it.id != corner.id && it.isCorner }
-        if (lastVal == null || lastVal.size != 1 || lastVal[0].state != corner.state) return false
-        return inSameLine(lastVal[0], adjacentField)
-
-    }
-
-    private fun inSameLine(placeholder: Placeholder, field: Placeholder): Boolean {
-        var norm: Int = kotlin.math.min(
-            1,
-            kotlin.math.abs(placeholder.id[0].digitToInt() - field.id[0].digitToInt())
-        )
-        norm += kotlin.math.min(
-            1,
-            kotlin.math.abs(placeholder.id[1].digitToInt() - field.id[1].digitToInt())
-        )
-        norm += kotlin.math.min(
-            1,
-            kotlin.math.abs(placeholder.id[2].digitToInt() - field.id[2].digitToInt())
-        )
-        return norm == 1
-    }
 
     fun switchPlayer() {
         if (currentPlayer == player1) currentPlayer = player2
