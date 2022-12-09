@@ -44,11 +44,8 @@ class Game {
             when (currentPlayer.playerState) {
                 PlayerState.PLACEMENT -> {
                     try {
-                        steal += addStone(placeholderList[0])
-                        if (isFinished()) {
-                            winner = currentPlayer.color
-                        }
-                        if (steal == 0) switchPlayer()
+                        addStone(placeholderList[0])
+
                     } catch (e: Exception) {
                         error = e.message.toString()
                     } finally {
@@ -75,19 +72,24 @@ class Game {
     }
 
     @Throws
-    fun addStone(placeholder: Placeholder): Int {
+    fun addStone(placeholder: Placeholder) {
         if (placeholder.state != State.EMPTY) {
             throw java.lang.Exception("Invalid Move")
         }
-        placeholder.state = currentPlayer.color
-        currentPlayer.placedStones.add(placeholder)
-        val completedLines = countCompletedLines(placeholder)
 
         currentPlayer.stonesToPlace -= 1
+        addStoneToBoard(placeholder, currentPlayer)
+
+        steal += countCompletedLines(placeholder)
+
         if (currentPlayer.stonesToPlace == 0) {
             currentPlayer.playerState = PlayerState.MOVING
         }
-        return completedLines //number of completed lines
+
+        if (isFinished()) {
+            winner = currentPlayer.color
+        }
+        if (steal == 0) switchPlayer()
     }
 
     @Throws
@@ -101,10 +103,9 @@ class Game {
             throw java.lang.Exception("Invalid Move")
         }
 
-        placeholder.state = State.EMPTY
-        var otherPlayer = getOtherPlayer()
-        otherPlayer.stonesOnBoard -= 1
-        otherPlayer.placedStones.remove(placeholder)
+        val otherPlayer = getOtherPlayer()
+
+        removeStoneFromBoard(placeholder, otherPlayer)
 
         if (otherPlayer.playerState == PlayerState.MOVING && otherPlayer.stonesOnBoard == 3) {
             otherPlayer.playerState = PlayerState.JUMPING
@@ -113,30 +114,29 @@ class Game {
 
     @Throws
     fun moveStone(from: Placeholder, to: Placeholder, jump: Boolean) {
-        if (to.state != State.EMPTY) {
-            throw java.lang.Exception("Invalid Move")
-        }
+        if (to.state != State.EMPTY) throw java.lang.Exception("Invalid Move")
+        if (from.state != currentPlayer.color) throw java.lang.Exception("Invalid Move")
+        if (board.graph.adjacencyMap[from]?.contains(to) != true && !jump) throw java.lang.Exception("Invalid Move")
 
-        if (from.state != currentPlayer.color) {
-            throw java.lang.Exception("Invalid Move")
-        }
+        removeStoneFromBoard(from, currentPlayer)
+        addStoneToBoard(to, currentPlayer)
 
-        if (board.graph.adjacencyMap[from]?.contains(to) != true && !jump) {
-            throw java.lang.Exception("Invalid Move")
-        }
-
-        currentPlayer.placedStones.remove(from)
-        currentPlayer.placedStones.remove(to)
-
-        from.state = State.EMPTY
-        to.state = currentPlayer.color
         steal += countCompletedLines(to)
 
-        if (isFinished()) {
-            winner = currentPlayer.color
-        }
+        if (isFinished()) winner = currentPlayer.color
         if (steal == 0) switchPlayer()
+    }
 
+    private fun addStoneToBoard(stone: Placeholder, player: Player) {
+        player.placedStones.add(stone)
+        player.stonesOnBoard += 1
+        stone.state = player.color
+    }
+
+    private fun removeStoneFromBoard(stone: Placeholder, player: Player) {
+        player.placedStones.remove(stone)
+        player.stonesOnBoard -= 1
+        stone.state = State.EMPTY
     }
 
     private fun countCompletedLines(placeholder: Placeholder): Int {
