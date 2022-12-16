@@ -1,6 +1,7 @@
 package com.example.ninemensmorris
 
 import java.util.HashSet
+import java.util.stream.Collectors
 
 /**
  *
@@ -69,34 +70,37 @@ class Board {
     }
 
     fun getLines(placeholder: Placeholder): Set<Set<Placeholder>> {
-        val adjacentFields = getAdjacentFields(placeholder)
         val lines: MutableSet<MutableSet<Placeholder>> = mutableSetOf()
 
-        if (placeholder.isCorner) {
-            for (p1 in adjacentFields!!) {
-                val line: MutableSet<Placeholder> = mutableSetOf(p1)
-                line.add(p1)
-                line.add(placeholder)
-                val p2: List<Placeholder>? = getAdjacentFields(p1)?.filter { inSameLine(it, placeholder) }
-                if (p2 != null) {
-                    line.add(p2[0])
-                }
-                lines.add(line)
-            }
-        } else {
-            for (p1 in adjacentFields!!) {
-                val line: MutableSet<Placeholder> = mutableSetOf(placeholder)
-                line.add(placeholder)
-                line.add(p1)
-                for (p2 in adjacentFields) {
-                    if (inSameLine(p1, p2)) {
-                        line.add(p2)
+        var fields: MutableSet<Placeholder> = mutableSetOf(placeholder)
+
+        getFields(placeholder, placeholder, fields)
+
+        for (field in fields) {
+            if (field != placeholder) {
+                var line: MutableSet<Placeholder> = mutableSetOf()
+                line.add(field)
+                for (field2 in fields)
+                {
+                    if(inSameLine(field, field2)){
+                        line.add(field2)
                     }
                 }
                 lines.add(line)
             }
         }
+
         return lines
+    }
+
+    private fun getFields(placeholder: Placeholder, current: Placeholder, fields: MutableSet<Placeholder>): MutableSet<Placeholder> {
+        for (p1 in getAdjacentFields(current)!!) {
+            if (inSameLine(p1, placeholder) && !fields.contains(p1)) {
+                fields.add(p1)
+                getFields(placeholder, p1, fields)
+            }
+        }
+        return fields
     }
 
     private fun getAdjacentFields(placeholder: Placeholder): HashSet<Placeholder>? {
