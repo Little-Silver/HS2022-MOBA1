@@ -1,9 +1,15 @@
 package com.example.ninemensmorris
 
 class Graph<T> {
+
     val adjacencyMap: HashMap<T, HashSet<T>> = HashMap()
+    val elements: MutableSet<T> = mutableSetOf()
 
     fun addEdge(sourceVertex: T, destinationVertex: T) {
+
+        elements.add(sourceVertex)
+        elements.add(destinationVertex)
+
         // Add edge to source vertex / node.
         adjacencyMap
             .computeIfAbsent(sourceVertex) { HashSet() }
