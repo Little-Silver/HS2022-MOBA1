@@ -1,4 +1,15 @@
-.content { 
-    display: flex; 
+input {
+    width: fit-content;
+}
 
+.flex-nav { 
+    display: flex; 
+    flex-wrap: wrap;
+    height: vh100;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
 }
