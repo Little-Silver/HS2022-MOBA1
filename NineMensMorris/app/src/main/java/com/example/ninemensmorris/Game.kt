@@ -1,16 +1,12 @@
 package com.example.ninemensmorris
 
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
-import java.util.HashSet
-
 class Game {
 
     var board: Board = Board();
     var state: GameState = GameState.PLACEMENT
     var player1: Player = Player(State.BLACK)
     var player2: Player = Player(State.WHITE)
-    var steal: Int = 0
+    private var steal: Int = 0
     var winner: State = State.EMPTY
     var error: String = ""
 
@@ -146,36 +142,33 @@ class Game {
         stone.state = State.EMPTY
     }
 
-
-
-
-
-    fun switchPlayer() {
-        if (currentPlayer == player1) currentPlayer = player2
-        else currentPlayer = player1
+    private fun switchPlayer() {
+        currentPlayer = if (currentPlayer == player1) player2
+        else player1
     }
 
-    fun isFinished(): Boolean {
-        if (player1.stonesOnBoard + player1.stonesToPlace < 3 || player2.stonesOnBoard + player2.stonesToPlace < 3) {
+    private fun isFinished(): Boolean {
+        if (player1.stonesOnBoard + player1.stonesToPlace < 3
+            || player2.stonesOnBoard + player2.stonesToPlace < 3) {
             return true
         }
         val otherPlayer = getOtherPlayer()
         if (otherPlayer.playerState != PlayerState.PLACEMENT) {
             for (placedStone in getOtherPlayer().placedStones) {
-                val adjacent =
-                    board.graph.adjacencyMap[placedStone]?.filter { placeholder -> placeholder.state == State.EMPTY }
+                val adjacent = board.graph.adjacencyMap[placedStone]?.
+                    filter { placeholder -> placeholder.state == State.EMPTY }
                 if (adjacent != null && adjacent.isNotEmpty()) {
-                    return false;
+                    return false
                 }
             }
-            return true;
+            return true
         } else {
             return false
         }
 
     }
 
-    fun getOtherPlayer(): Player {
+    private fun getOtherPlayer(): Player {
         var otherPlayer = player1
         if (currentPlayer == player1) otherPlayer = player2
         return otherPlayer

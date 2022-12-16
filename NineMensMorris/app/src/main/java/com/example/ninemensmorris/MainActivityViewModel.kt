@@ -1,7 +1,5 @@
 package com.example.ninemensmorris
 
-import android.graphics.Color
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -16,8 +14,4 @@ class MainActivityViewModel: ViewModel() {
     var winner: MutableLiveData<String> = MutableLiveData()
     var error: MutableLiveData<String> = MutableLiveData()
 
-    fun switchPlayer(view: View) {
-        game.value?.switchPlayer()
-        dispPlayer.value = game.value?.currentPlayer?.color?.name
-    }
 }

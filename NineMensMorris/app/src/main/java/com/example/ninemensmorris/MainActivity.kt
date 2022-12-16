@@ -1,6 +1,5 @@
 package com.example.ninemensmorris
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -26,39 +25,39 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         viewModel.game.value = Game(Board())
         viewModel.dispPlayer.value = ""
 
-        mutableDict.put(viewModel.game.value!!.board.p000, binding.placeholder000)
-        mutableDict.put(viewModel.game.value!!.board.p001, binding.placeholder001)
-        mutableDict.put(viewModel.game.value!!.board.p002, binding.placeholder002)
-        mutableDict.put(viewModel.game.value!!.board.p010, binding.placeholder010)
-        mutableDict.put(viewModel.game.value!!.board.p020, binding.placeholder020)
-        mutableDict.put(viewModel.game.value!!.board.p100, binding.placeholder100)
-        mutableDict.put(viewModel.game.value!!.board.p012, binding.placeholder012)
-        mutableDict.put(viewModel.game.value!!.board.p021, binding.placeholder021)
-        mutableDict.put(viewModel.game.value!!.board.p022, binding.placeholder022)
+        mutableDict[viewModel.game.value!!.board.p000] = binding.placeholder000
+        mutableDict[viewModel.game.value!!.board.p001] = binding.placeholder001
+        mutableDict[viewModel.game.value!!.board.p002] = binding.placeholder002
+        mutableDict[viewModel.game.value!!.board.p010] = binding.placeholder010
+        mutableDict[viewModel.game.value!!.board.p020] = binding.placeholder020
+        mutableDict[viewModel.game.value!!.board.p100] = binding.placeholder100
+        mutableDict[viewModel.game.value!!.board.p012] = binding.placeholder012
+        mutableDict[viewModel.game.value!!.board.p021] = binding.placeholder021
+        mutableDict[viewModel.game.value!!.board.p022] = binding.placeholder022
 
-        mutableDict.put(viewModel.game.value!!.board.p101, binding.placeholder101)
-        mutableDict.put(viewModel.game.value!!.board.p102, binding.placeholder102)
-        mutableDict.put(viewModel.game.value!!.board.p110, binding.placeholder110)
-        mutableDict.put(viewModel.game.value!!.board.p112, binding.placeholder112)
-        mutableDict.put(viewModel.game.value!!.board.p120, binding.placeholder120)
-        mutableDict.put(viewModel.game.value!!.board.p121, binding.placeholder121)
-        mutableDict.put(viewModel.game.value!!.board.p122, binding.placeholder122)
+        mutableDict[viewModel.game.value!!.board.p101] = binding.placeholder101
+        mutableDict[viewModel.game.value!!.board.p102] = binding.placeholder102
+        mutableDict[viewModel.game.value!!.board.p110] = binding.placeholder110
+        mutableDict[viewModel.game.value!!.board.p112] = binding.placeholder112
+        mutableDict[viewModel.game.value!!.board.p120] = binding.placeholder120
+        mutableDict[viewModel.game.value!!.board.p121] = binding.placeholder121
+        mutableDict[viewModel.game.value!!.board.p122] = binding.placeholder122
 
-        mutableDict.put(viewModel.game.value!!.board.p200, binding.placeholder200)
-        mutableDict.put(viewModel.game.value!!.board.p201, binding.placeholder201)
-        mutableDict.put(viewModel.game.value!!.board.p202, binding.placeholder202)
-        mutableDict.put(viewModel.game.value!!.board.p210, binding.placeholder210)
-        mutableDict.put(viewModel.game.value!!.board.p212, binding.placeholder212)
-        mutableDict.put(viewModel.game.value!!.board.p221, binding.placeholder221)
-        mutableDict.put(viewModel.game.value!!.board.p222, binding.placeholder222)
-        mutableDict.put(viewModel.game.value!!.board.p220, binding.placeholder220)
+        mutableDict[viewModel.game.value!!.board.p200] = binding.placeholder200
+        mutableDict[viewModel.game.value!!.board.p201] = binding.placeholder201
+        mutableDict[viewModel.game.value!!.board.p202] = binding.placeholder202
+        mutableDict[viewModel.game.value!!.board.p210] = binding.placeholder210
+        mutableDict[viewModel.game.value!!.board.p212] = binding.placeholder212
+        mutableDict[viewModel.game.value!!.board.p221] = binding.placeholder221
+        mutableDict[viewModel.game.value!!.board.p222] = binding.placeholder222
+        mutableDict[viewModel.game.value!!.board.p220] = binding.placeholder220
 
         for (mutableEntry in mutableDict) {
             mutableEntry.value.setOnClickListener(View.OnClickListener {
@@ -84,12 +83,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun refresh() {
         for (mutableEntry in mutableDict) {
-            if (mutableEntry.key.state == State.WHITE) {
-                switchColorWhite(mutableEntry.value)
-            } else if (mutableEntry.key.state == State.BLACK) {
-                switchColorBlack(mutableEntry.value)
-            } else {
-                switchColorPurple(mutableEntry.value)
+            when (mutableEntry.key.state) {
+                State.WHITE -> switchColorWhite(mutableEntry.value)
+                State.BLACK -> switchColorBlack(mutableEntry.value)
+                else -> switchColorPurple(mutableEntry.value)
             }
         }
         viewModel.dispPlayer.value = viewModel.game.value!!.currentPlayer.color.toString()
@@ -118,7 +115,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*override fun onClick(click: View?) {
-        TODO("Not yet implemented")
-    }*/
 }

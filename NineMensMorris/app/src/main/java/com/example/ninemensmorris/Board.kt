@@ -55,7 +55,7 @@ class Board {
     }
 
     fun countCompletedLines(placeholder: Placeholder): Int {
-        var completeLines: Int = 0
+        var completeLines = 0
 
         for (line in getLines(placeholder)) {
             if (isLineComplete(line)) completeLines++
@@ -64,20 +64,20 @@ class Board {
         return completeLines
     }
 
-    fun isLineComplete(line: Set<Placeholder>): Boolean {
+    private fun isLineComplete(line: Set<Placeholder>): Boolean {
         return line.stream().map { it::state.get() }.distinct().limit(2).count() <= 1
     }
 
     fun getLines(placeholder: Placeholder): Set<Set<Placeholder>> {
-        var adjacentFields = getAdjacentFields(placeholder)
-        var lines: MutableSet<MutableSet<Placeholder>> = mutableSetOf()
+        val adjacentFields = getAdjacentFields(placeholder)
+        val lines: MutableSet<MutableSet<Placeholder>> = mutableSetOf()
 
         if (placeholder.isCorner) {
             for (p1 in adjacentFields!!) {
-                var line: MutableSet<Placeholder> = mutableSetOf(p1)
+                val line: MutableSet<Placeholder> = mutableSetOf(p1)
                 line.add(p1)
                 line.add(placeholder)
-                var p2: List<Placeholder>? = getAdjacentFields(p1)?.filter { inSameLine(it, placeholder) }
+                val p2: List<Placeholder>? = getAdjacentFields(p1)?.filter { inSameLine(it, placeholder) }
                 if (p2 != null) {
                     line.add(p2[0])
                 }
@@ -85,7 +85,7 @@ class Board {
             }
         } else {
             for (p1 in adjacentFields!!) {
-                var line: MutableSet<Placeholder> = mutableSetOf(placeholder)
+                val line: MutableSet<Placeholder> = mutableSetOf(placeholder)
                 line.add(placeholder)
                 line.add(p1)
                 for (p2 in adjacentFields) {
@@ -99,11 +99,7 @@ class Board {
         return lines
     }
 
-    fun getAdjacentStonesWithSameColor(placeholder: Placeholder): List<Placeholder>? {
-        return graph.adjacencyMap[placeholder]?.filter { it.state == placeholder.state }
-    }
-
-    fun getAdjacentFields(placeholder: Placeholder): HashSet<Placeholder>? {
+    private fun getAdjacentFields(placeholder: Placeholder): HashSet<Placeholder>? {
         return graph.adjacencyMap[placeholder]
     }
 
