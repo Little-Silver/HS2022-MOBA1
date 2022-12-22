@@ -1,4 +1,4 @@
-package com.example.stockapp
+package ch.zhaw.assignment_08
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -9,7 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import com.example.stockapp.databinding.ActivityMainBinding
+import ch.zhaw.assignment_08.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

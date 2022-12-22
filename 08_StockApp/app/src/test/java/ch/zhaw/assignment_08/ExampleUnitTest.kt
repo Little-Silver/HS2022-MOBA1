@@ -1,4 +1,4 @@
-package com.example.stockapp
+package ch.zhaw.assignment_08
 
 import org.junit.Test
 
