@@ -1,0 +1,30 @@
+.content label {
+    width: 20%;
+}
+
+.content input {
+    width: 90%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+
+.container {
+    display: flex;
+    margin-top: 10px;
+}
+
+@media all and (orientation: portrait) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media all and (orientation: landscape) {
+    .container {
+        flex-direction: row;
+    }
+}
