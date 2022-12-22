@@ -1,0 +1,10 @@
+@media all and (orientation: portrait) {
+    #landscape{
+        display: none;
+    }
+}
+@media all and (orientation: landscape) {
+    #portrait{
+        display: none;
+    }
+}
